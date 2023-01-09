@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 
 function Detail(props) {
   let [alert, alertSet] = useState(true);
   let [alert2, alert2Set] = useState(false);
   let [text, textSet] = useState(null);
+  let [tab, tabSet] = useState(0);
   const isEmpty = (e) => {
     if (e === undefined || e === null || e == "") {
       return true;
@@ -67,8 +69,69 @@ function Detail(props) {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
+      <Nav variant="tabs" defaultActiveKey="link-1">
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              tabSet(0);
+            }}
+            eventKey="link-1"
+          >
+            버튼0
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              tabSet(1);
+            }}
+            eventKey="link-2"
+          >
+            버튼 1
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            onClick={() => {
+              tabSet(2);
+            }}
+            eventKey="link-3"
+          >
+            버튼 2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab} />
     </div>
   );
 }
 
+function TabContent({ tab }) {
+  console.log(tab);
+  //방법1
+  // if (props.tab == 0) {
+  //   return <div>내용0</div>;
+  // } else if (props.tab == 1) {
+  //   return <div>내용1</div>;
+  // } else {
+  //   return <div>내용2</div>;
+  // }
+  let [fade, fadeSet] = useState("");
+  useEffect(() => {
+    let a = setTimeout(() => {
+      fadeSet("end");
+    }, 100);
+
+    return () => {
+      clearTimeout(a);
+      fadeSet("");
+    };
+  }, [tab]);
+  //방법2
+  return (
+    <div className={`start ${fade}`}>
+      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
+    </div>
+  );
+}
 export default Detail;
