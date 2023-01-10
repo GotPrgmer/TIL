@@ -1,5 +1,5 @@
 import axios from "axios";
-import Card from "./Card";
+import Card from "./card";
 import { useState } from "react";
 
 function Main(props) {

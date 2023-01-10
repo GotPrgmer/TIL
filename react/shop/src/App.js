@@ -3,12 +3,13 @@ import { useState } from "react";
 import data from "./data.js";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
-import Detail from "./routes/Detail";
-import Main from "./routes/Main";
+import Detail from "./routes/detail";
+import Main from "./routes/main";
 
 function App() {
   let [shoes, shoesSet] = useState(data);
   let navigate = useNavigate();
+  let [glitter, glitterSet] = useState("");
   return (
     <div className="App">
       <Navbar className="navbar" bg="white">
@@ -38,7 +39,16 @@ function App() {
             <Main shoesSet={shoesSet} navigate={navigate} shoes={shoes} />
           }
         />
-        <Route path="/detail/:id" element={<Detail shoes={shoes} />} />
+        <Route
+          path="/detail/:id"
+          element={
+            <Detail
+              glitterSet={glitterSet} // 디테일페이지 사라졌다가 천천히 드러나는 것
+              glitter={glitter}
+              shoes={shoes}
+            />
+          }
+        />
         <Route
           path="/event"
           element={

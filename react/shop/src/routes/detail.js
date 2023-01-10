@@ -37,11 +37,20 @@ function Detail(props) {
       //기존 데이터요청은 제거해주세요
     };
   }, [text]);
+  useEffect(() => {
+    let a = setTimeout(() => {
+      props.glitterSet("end");
+    }, 1000);
+    return () => {
+      clearTimeout(a);
+      props.glitterSet("");
+    };
+  }, []);
 
   const { id } = useParams();
   console.log(props.shoes);
   return (
-    <div className="container">
+    <div className={`start ${props.glitter}`}>
       {alert == true ? (
         <div className="alert alert-warning">2초이내 구매시 할인</div>
       ) : null}
