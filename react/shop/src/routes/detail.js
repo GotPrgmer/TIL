@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
+import { Context1 } from "./../App.js";
 
 function Detail(props) {
   let [alert, alertSet] = useState(true);
@@ -40,17 +41,19 @@ function Detail(props) {
   useEffect(() => {
     let a = setTimeout(() => {
       props.glitterSet("end");
-    }, 1000);
+      console.log("글리터", props.glitter);
+    }, 100);
     return () => {
       clearTimeout(a);
       props.glitterSet("");
+      console.log("글리터", props.glitter);
     };
   }, []);
 
   const { id } = useParams();
   console.log(props.shoes);
   return (
-    <div className={`start ${props.glitter}`}>
+    <div className="container">
       {alert == true ? (
         <div className="alert alert-warning">2초이내 구매시 할인</div>
       ) : null}
@@ -139,7 +142,7 @@ function TabContent({ tab }) {
   //방법2
   return (
     <div className={`start ${fade}`}>
-      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
+      {[<div>0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
     </div>
   );
 }

@@ -1,15 +1,18 @@
 import "./App.css";
-import { useState } from "react";
+import { createContext, useState } from "react";
 import data from "./data.js";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
-import Detail from "./routes/detail";
-import Main from "./routes/main";
+import Detail from "./routes/Detail";
+import Main from "./routes/Main";
+
+let Context1 = createContext();
 
 function App() {
   let [shoes, shoesSet] = useState(data);
   let navigate = useNavigate();
   let [glitter, glitterSet] = useState("");
+  let [재고] = useState([10, 11, 12]);
   return (
     <div className="App">
       <Navbar className="navbar" bg="white">
@@ -42,11 +45,13 @@ function App() {
         <Route
           path="/detail/:id"
           element={
-            <Detail
-              glitterSet={glitterSet} // 디테일페이지 사라졌다가 천천히 드러나는 것
-              glitter={glitter}
-              shoes={shoes}
-            />
+            <Context1.Provider value={{ 재고, shoes }}>
+              <Detail
+                className={`start ${glitter}`}
+                glitterSet={glitterSet} // 디테일페이지 사라졌다가 천천히 드러나는 것
+                shoes={shoes}
+              />
+            </Context1.Provider>
           }
         />
         <Route
