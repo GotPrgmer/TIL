@@ -5,8 +5,9 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
 import Detail from "./routes/Detail";
 import Main from "./routes/Main";
+import Cart from "./routes/Cart";
 
-let Context1 = createContext();
+// let Context1 = createContext();
 
 function App() {
   let [shoes, shoesSet] = useState(data);
@@ -45,13 +46,14 @@ function App() {
         <Route
           path="/detail/:id"
           element={
-            <Context1.Provider value={{ 재고, shoes }}>
-              <Detail
-                className={`start ${glitter}`}
-                glitterSet={glitterSet} // 디테일페이지 사라졌다가 천천히 드러나는 것
-                shoes={shoes}
-              />
-            </Context1.Provider>
+            // <Context1.Provider value={{ 재고, shoes }}>
+            <Detail
+              className={`start ${glitter}`}
+              glitter={glitter}
+              glitterSet={glitterSet} // 디테일페이지 사라졌다가 천천히 드러나는 것
+              shoes={shoes}
+            />
+            // </Context1.Provider>
           }
         />
         <Route
@@ -69,6 +71,7 @@ function App() {
           ></Route>
           <Route path="two" element={<div>생일기념 쿠폰받기</div>}></Route>
         </Route>
+        <Route path="/cart" element={<Cart />}></Route>
         <Route path="*" element={<div>없는 페이지에요</div>}></Route>
       </Routes>
     </div>
