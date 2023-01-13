@@ -1,13 +1,17 @@
 import { useContext, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Nav } from "react-bootstrap";
 import { Context1 } from "./../App.js";
-
+import { addProduct } from "./../store.js";
 function Detail(props) {
   let [alert, alertSet] = useState(true);
   let [alert2, alert2Set] = useState(false);
   let [text, textSet] = useState(null);
   let [tab, tabSet] = useState(0);
+  let detailState = useSelector((state) => state.shoppingbag);
+  let dispatch = useDispatch();
+
   const isEmpty = (e) => {
     if (e === undefined || e === null || e == "") {
       return true;
@@ -53,7 +57,7 @@ function Detail(props) {
   const { id } = useParams();
   console.log(props.shoes);
   return (
-    <div className="container">
+    <div className={`container start ${props.glitter}`}>
       {alert == true ? (
         <div className="alert alert-warning">2초이내 구매시 할인</div>
       ) : null}
@@ -78,7 +82,15 @@ function Detail(props) {
           <h4 className="pt-5">{props.shoes.find((e) => e.id == id).title}</h4>
           <p>{props.shoes.find((e) => e.id == id).title}</p>
           <p>{`${props.shoes.find((e) => e.id == id).price}원`}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button
+            onClick={() => {
+              dispatch(addProduct({ id: 1, name: "Grey Yordan", count: 1 }));
+            }}
+            className="btn btn-danger"
+          >
+            {detailState[0].name}
+            주문하기
+          </button>
         </div>
       </div>
       <Nav variant="tabs" defaultActiveKey="link-1">

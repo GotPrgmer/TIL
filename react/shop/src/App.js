@@ -48,7 +48,6 @@ function App() {
           element={
             // <Context1.Provider value={{ 재고, shoes }}>
             <Detail
-              className={`start ${glitter}`}
               glitter={glitter}
               glitterSet={glitterSet} // 디테일페이지 사라졌다가 천천히 드러나는 것
               shoes={shoes}
