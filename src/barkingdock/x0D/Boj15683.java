@@ -1,4 +1,4 @@
-package barkingdock.x0B;
+package barkingdock.x0D;
 
 // 해당 문제는 못풀었다.
 // 그래서 블로그 답을 참고하였다.
