@@ -1,7 +1,7 @@
 package barkingdock.x0E;
 import java.util.*;
 import java.io.*;
-public class MergeSort {
+public class MergeSortSimple {
     static int[] arr1 = {-9,1,6,8,12};
     static int[] arr2 = {-7,7,13,15};
     public static void main(String[] args) throws IOException {
