@@ -28,14 +28,14 @@ public class MergeSort {
         int l2 = arr2.length;
         int idx1 = 0;
         int idx2 = 0;
-        for(int i=0;i<l1+l2;i++){
+        for(int i=st;i<en;i++){
             if(idx1==l1) tmp[i] = arr2[idx2++];
             else if(idx2==l2) tmp[i] = arr1[idx1++];
             else if(arr1[idx1]>arr2[idx2]) tmp[i] = arr2[idx2++];
             else tmp[i] = arr1[idx1++];
         }
         for(int i=st;i<en;i++){
-            arr[i] = tmp[i-st];
+            arr[i] = tmp[i];
         }
     }
 
