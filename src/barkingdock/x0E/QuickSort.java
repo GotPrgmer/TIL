@@ -13,12 +13,13 @@ public class QuickSort {
     }
     static void quickSort(int st, int en){
         if(en<=st+1) return;
+        int pivot_idx = st;
         int l = st+1;
         int r = en-1;
         while(true){
-            while(l <= r && arr[r]>=arr[0]) r--;
-            while(l <= r && arr[l]<=arr[0]) l++;
-            if(l>r) break;
+            while(l<=r && arr[l]<=arr[pivot_idx]) l++;
+            while(l<=r && arr[r]>=arr[pivot_idx]) r--;
+            if(r<l) break;
             swap(l,r);
         }
         swap(st,r);
@@ -27,8 +28,8 @@ public class QuickSort {
     }
 
     static void swap(int idx1, int idx2){
-        int tmp = arr[idx2];
-        arr[idx2] = arr[idx1];
-        arr[idx1] = tmp;
+        int tmp = arr[idx1];
+        arr[idx1] = arr[idx2];
+        arr[idx2] = tmp;
     }
 }
