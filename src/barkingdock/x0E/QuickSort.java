@@ -8,31 +8,22 @@ public class QuickSort {
         //피봇을 기준으로 1은 l n-1은 r로 둬서 피봇보다 l(크고)r(작은)값이 나올때 스왑
         //l과 r이 교차된다면 그때 pivot이랑 r을 교체
         arr = new int[]{6, -8, 1, 12, 8, 3, 7, -7};
-        quickSort(arr.length);
+        quickSort(0,arr.length);
         System.out.println(Arrays.toString(arr));
     }
-    static void quickSort(int n){
-        //l과 r
-        int l = 1;
-        int r = n-1;
-        while(l<=r && l<n){
-            if(arr[r]>=arr[0]){
-                r-= 1;
-            }
-            if(arr[l]<=arr[0]){
-                l+=1;
-            }
-            if(l<r && arr[r]<arr[0] && arr[l]>arr[0]){
-                swap(l,r);
-            }
+    static void quickSort(int st, int en){
+        if(en<=st+1) return;
+        int l = st+1;
+        int r = en-1;
+        while(true){
+            while(l <= r && arr[r]>=arr[0]) r--;
+            while(l <= r && arr[l]<=arr[0]) l++;
+            if(l>r) break;
+            swap(l,r);
         }
-        if(r==0){
-            return;
-        }
-        else{
-            swap(0,r);
-            quickSort(n);
-        }
+        swap(st,r);
+        quickSort(st,r);
+        quickSort(r+1,en);
     }
 
     static void swap(int idx1, int idx2){
