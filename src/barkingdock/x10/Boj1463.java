@@ -1,5 +1,4 @@
 package barkingdock.x10;
-import java.util.*;
 import java.io.*;
 
 public class Boj1463 {
