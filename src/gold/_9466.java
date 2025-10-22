@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-
+//시간초과 풀이 O(N^2)
 public class _9466 {
     static int[] arr;
     static StringTokenizer st;
