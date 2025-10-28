@@ -1,4 +1,4 @@
-package boj.src.leetCode;
+package leetcode.src;
 
 public class Problem2 {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
