@@ -26,7 +26,6 @@ public class Factorial {
             current = current.multiply(num);
             num = num.add(BigInteger.ONE);
         }
-
         return current.compareTo(target) == 0;
     }
 }

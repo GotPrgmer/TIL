@@ -1,12 +1,20 @@
 package assignment.src.builderInbuilder;
 
-public class RequestConfigBuilder{
+public class RequestConfigBuilder {
     private final Config.ConfigBuilder parentBuilder;
     public String header;
     public String cookie;
 
     public RequestConfigBuilder header(String header){
         this.header = header;
+        return this;
+    }
+    public RequestConfigBuilder header(){
+        this.header = null;
+        return this;
+    }
+    public RequestConfigBuilder cookie(){
+        this.cookie = null;
         return this;
     }
     public RequestConfigBuilder cookie(String cookie){
@@ -21,6 +29,6 @@ public class RequestConfigBuilder{
         this.parentBuilder = cb;
     }
     public Config build(){
-        return new Config(this);
+        return parentBuilder.build();
     }
 }

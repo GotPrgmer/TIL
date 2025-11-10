@@ -1,6 +1,6 @@
 package assignment.src.builderInbuilder;
 
-public class SecurityConfigBuilder{
+public class SecurityConfigBuilder {
 
     private final Config.ConfigBuilder parentBuilder;
 
@@ -11,8 +11,17 @@ public class SecurityConfigBuilder{
         this.roles = roles;
         return this;
     }
+
+    public SecurityConfigBuilder roles(){
+        this.roles = null;
+        return this;
+    }
     public SecurityConfigBuilder authorization(String authorization){
         this.authorization = authorization;
+        return this;
+    }
+    public SecurityConfigBuilder authorization(){
+        this.authorization = null;
         return this;
     }
     public Config.ConfigBuilder and(){
@@ -21,6 +30,9 @@ public class SecurityConfigBuilder{
 
     public SecurityConfigBuilder(Config.ConfigBuilder cb){
         this.parentBuilder = cb;
+    }
+    public Config build() {
+        return parentBuilder.build();
     }
 
 }

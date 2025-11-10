@@ -4,21 +4,12 @@ public class Config{
     public RequestConfig requestConfig;
     public ResponseConfig responseConfig;
     public SecurityConfig securityConfig;
-
     public Config(ConfigBuilder cb){
         this.requestConfig = new RequestConfig(cb.rcb);
         this.responseConfig = new ResponseConfig(cb.rcbr);
         this.securityConfig = new SecurityConfig(cb.scb);
     }
-    public Config(RequestConfigBuilder rcb){
-        this.requestConfig = new RequestConfig(rcb);
-    }
-    public Config(ResponseConfigBuilder rescb){
-        this.responseConfig = new ResponseConfig(rescb);
-    }
-    public Config(SecurityConfigBuilder scb){
-        this.securityConfig = new SecurityConfig(scb);
-    }
+
     public static ConfigBuilder builder() {
         return new ConfigBuilder();
     }
@@ -41,7 +32,6 @@ public class Config{
         public Config build(){
             return new Config(this);
         }
-
     }
 
 }
