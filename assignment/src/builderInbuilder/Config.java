@@ -1,4 +1,4 @@
-package assignment;
+package assignment.src.builderInbuilder;
 
 public class Config{
     public RequestConfig requestConfig;

@@ -1,4 +1,4 @@
-package assignment;
+package assignment.src.builderInbuilder;
 
 public class ConfigTest {
     public static void main(String[] args){
