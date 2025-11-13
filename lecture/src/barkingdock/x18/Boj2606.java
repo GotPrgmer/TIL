@@ -2,39 +2,37 @@ package lecture.src.barkingdock.x18;
 import java.util.*;
 import java.io.*;
 public class Boj2606 {
-    static List<Integer>[] graph;
-    static boolean[] visited;
+    static int[] parent;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int comNum = Integer.parseInt(br.readLine());
         int pair = Integer.parseInt(br.readLine());
-        graph = new ArrayList[comNum+1];
-        visited = new boolean[comNum+1];
-        for(int i=0;i<comNum+1;i++) graph[i] = new ArrayList<>();
+        parent = new int[comNum+1];
+        for(int i=0;i<comNum;i++) parent[i] = i;
         for(int i=0;i<pair;i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
             int first = Integer.parseInt(st.nextToken());
             int second = Integer.parseInt(st.nextToken());
-            graph[first].add(second);
-            graph[second].add(first);
+            union(first,second);
         }
-        System.out.println(bfs());
-    }
-    public static int bfs(){
-        Queue<Integer> q = new ArrayDeque<>();
-        q.add(1);
-        visited[1] =  true;
+
+        int root = find(1);
         int ans = 0;
-        while(!q.isEmpty()){
-            int cur = q.poll();
-            for(int nxt:graph[cur]){
-                if(visited[nxt]) continue;
+        for(int i=2;i<comNum+1;i++){
+            if(find(i) == root){
                 ans++;
-                q.add(nxt);
-                visited[nxt] = true;
             }
         }
-        return ans;
+        System.out.println(ans);
+    }
+    public static void union(int x, int y){
+        x = find(x);
+        y = find(y);
+        if(x!=y) parent[y] = x;
+    }
+    static int find(int x){
 
+        if(x==parent[x]) return x;
+        return parent[x] = find(parent[x]);
     }
 }
