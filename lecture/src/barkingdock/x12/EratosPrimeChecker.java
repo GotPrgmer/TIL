@@ -4,7 +4,7 @@ import java.io.*;
 
 public class EratosPrimeChecker {
     public static void main(String[] args) throws IOException {
-        List<Integer> tmp = new ArrayList<>(primeList(100));
+        List<Integer> tmp = new ArrayList<>(primeList(50_000_000));
         for(int i=0;i<tmp.size();i++){
             System.out.print(tmp.get(i) + " ");
         }
